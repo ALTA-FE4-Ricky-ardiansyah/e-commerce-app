@@ -38,7 +38,7 @@ export default function DetailProduct() {
               <img
                 className="h-48 w-full object-cover md:h-full md:w-48"
                 src={product.image}
-                alt="picture"
+                alt="gambar"
               />
             </div>
             <div className="p-8">

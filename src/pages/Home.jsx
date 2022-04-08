@@ -41,8 +41,8 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-slate-100">
-      <NavbarComponent label={"home"} />
+    <div className="bg-slate-100 h-full">
+      <NavbarComponent />
       <div className="justify-center">
         <img className="w-screen mt-1" src={banner} alt="banner" />
       </div>
@@ -70,7 +70,7 @@ export default function Home() {
             <li className="page-item">
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                href="#"
+                href="!#"
               >
                 1
               </a>
@@ -78,7 +78,7 @@ export default function Home() {
             <li className="page-item active">
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-                href="#"
+                href="!#"
               >
                 2 <span className="visually-hidden">(current)</span>
               </a>
@@ -86,7 +86,7 @@ export default function Home() {
             <li className="page-item">
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                href="#"
+                href="!#"
               >
                 3
               </a>
@@ -94,7 +94,7 @@ export default function Home() {
             <li className="page-item">
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                href="#"
+                href="!#"
               >
                 Next
               </a>
