@@ -3,8 +3,8 @@ import React from "react";
 export default function Card(props) {
   return (
     // <Link href={`/product/${props.id}`}>
-    <div className="mt-10 max-w-md mx-10  ">
-      <div className="w-60 rounded-lg shadow-lg bg-white max-w-sm m-auto ">
+    <div className="mt-9 mx-5">
+      <div className="w-60 rounded-lg shadow-lg bg-white max-w-sm ">
         <a href="#!">
           <img className="rounded-t-lg" src={props.image} alt="" />
         </a>

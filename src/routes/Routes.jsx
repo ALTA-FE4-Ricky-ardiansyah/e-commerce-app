@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import DetailProduct from "../pages/DetailProduct";
 import ShopingCart from "../pages/ShopingCart";
+import Login from "../pages/Login";
+import SellProduct from "../pages/SellProduct";
+import EditProduct from "../pages/EditProduct";
 
 // if (
 //   localStorage.theme === "dark" ||
@@ -33,6 +36,9 @@ export default function Routing() {
         <Route path="/home" element={<Home />} />
         <Route path="/product/:product_id" element={<DetailProduct />} />
         <Route path="/cart" element={<ShopingCart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sellProduct" element={<SellProduct />} />
+        <Route path="/editProduct" element={<EditProduct />} />
       </Routes>
       {/* </ThemeContext.Provider> */}
     </BrowserRouter>
