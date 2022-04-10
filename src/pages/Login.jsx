@@ -3,6 +3,9 @@ import Card from "../components/Card";
 import MenuComponent from "../components/MenuComponent";
 import NavbarComponent from "../components/NavbarComponent";
 import { useNavigate } from "react-router-dom";
+import * as api from "../";
+import swal from "sweetalert";
+import { register, loginService } from "../service/Auth";
 
 export default function Login() {
   const [name, setName] = useState({});
@@ -17,31 +20,34 @@ export default function Login() {
 
   async function signup() {
     let item = { name, password, email };
-    console.warn(name, password, email);
-
-    let result = await fetch("http://34.238.121.143:8000/api/users", {
-      method: "POST",
-      body: JSON.stringify(item),
-      headers: { "Content-Type": "text/plain", Accept: "*/*" },
-    });
-    result = await result.json();
-    localStorage.setItem("user-info", JSON.stringify(result));
-    navigate("/home");
-    alert("halo");
+    const result = await register(JSON.stringify(item));
+    if (result.code === 200) {
+      localStorage.setItem("user-info", JSON.stringify(result.data));
+      navigate("/home");
+    } else {
+      swal("kelru", "hayo slaah", "warning");
+    }
   }
 
   async function signIn() {
-    let result = await fetch("http://34.238.121.143:8000/api/auth", {
-      method: "POST",
-      body: {
-        username: emailLogin,
-        password: passwordLogin,
-      },
-      headers: { "Content-Type": "text/plain", Accept: "*/*" },
+    // let result = await fetch("http://34.238.121.143:8000/api/auth", {
+    //   method: "POST",
+    //   body: {
+    //     username: emailLogin,
+    //     password: passwordLogin,
+    //   },
+    //   headers: { "Content-Type": "text/plain", Accept: "*/*" },
+    // });
+    let Auth = await loginService({
+      username: emailLogin,
+      password: passwordLogin,
     });
-    result = await result.json();
-    console.log(result.data);
-    localStorage.setItem("user-info", JSON.stringify(result.data));
+    if (Auth.code === 200) {
+      localStorage.setItem("user-info", JSON.stringify(Auth.data));
+      alert("login sukses");
+    } else {
+      alert("login gagal");
+    }
     navigate("/home");
   }
 
@@ -101,7 +107,6 @@ export default function Login() {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id=""
                 aria-describedby=""
-                placeholder="Password"
               ></input>
             </div>
             <div className="form-group mb-6">

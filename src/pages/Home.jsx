@@ -3,17 +3,30 @@ import Card from "../components/Card";
 import MenuComponent from "../components/MenuComponent";
 import NavbarComponent from "../components/NavbarComponent";
 import banner from "../assets/banner.jpg";
-import { getProducts } from "../service/Product";
-import { Link } from "react-router-dom";
+import { getProducts, getProductByCategory } from "../service/Product";
+import { Link, useLocation } from "react-router-dom";
+
+function useQuery() {
+  const { search } = useLocation();
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 export default function Home() {
   const [product, setProduct] = useState({});
   const [links, setLinks] = useState({});
+  const query = useQuery();
+
+  const category = query.get("category");
 
   useEffect(() => {
     fetchDataProduct();
   }, []);
+
   const fetchDataProduct = async () => {
-    const response = await getProducts();
+    let response = await getProducts();
+    if (category) {
+      response = await getProductByCategory(category);
+    }
     if (response.code === 200) {
       setProduct(response.data);
       console.log(product);
@@ -26,14 +39,14 @@ export default function Home() {
   const populatingItemProduct = () => {
     if (product.length > 0) {
       return product.map((item, index) => (
-        <a href={`/product/${item.id}`}>
-          <Card
-            id={item.id}
-            image={item.image}
-            namaProduct={item.title}
-            harga={item.price}
-          />
-        </a>
+        // <a href={``}>
+        <Card
+          id={item.id}
+          image={item.image}
+          namaProduct={item.title}
+          harga={item.price}
+        />
+        // </a>
       ));
     } else {
       return <span>Tidak Ada Product</span>;

@@ -12,11 +12,12 @@ export async function get(url, params, headers) {
   return axiosResponse;
 }
 
-export async function post(url, params, headers) {
+export async function post(url, params, headers, body) {
   const axiosResponse = await axios
     .post(url, {
       params,
       headers,
+      body,
     })
     .then((response) => response.data)
     .catch((error) => error.response.data);

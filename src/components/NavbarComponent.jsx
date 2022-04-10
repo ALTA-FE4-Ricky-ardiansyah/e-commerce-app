@@ -11,7 +11,11 @@ export default function NavbarComponent(props) {
       // convert json yang awalnya bentuk string jadi objek
       const json = JSON.parse(data);
       // ambil namanya
-      // return <span>Hallo {json.User.username}</span>;
+      return (
+        <span>
+          Hallo {json.User.username === "" ? "User" : json.User.username}
+        </span>
+      );
     }
   };
   return (

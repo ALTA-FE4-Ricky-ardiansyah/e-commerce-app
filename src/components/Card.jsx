@@ -1,6 +1,23 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import * as api from "../config/api";
+import { checkAuth } from "../service/Auth";
+
 // import { Link } from "react-router-dom";
 export default function Card(props) {
+  const navigate = useNavigate();
+
+  const addToCart = () => {
+    const storage = localStorage.getItem("user-info");
+    if (!storage) {
+      navigate("/login");
+    } else {
+      const json = JSON.parse(storage);
+      console.log(json);
+      // checkAuth();
+    }
+  };
+
   return (
     // <Link href={`/product/${props.id}`}>
     <div className="mt-9 mx-5 flex justify-center">
@@ -16,6 +33,7 @@ export default function Card(props) {
             RP. {props.harga}
           </p>
           <button
+            onClick={() => addToCart()}
             type="button"
             className="mx-auto inline-block px-10 py-2.5  bg-orange-600 text-white font-semibold text-xs leading-tight  rounded-full shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
           >

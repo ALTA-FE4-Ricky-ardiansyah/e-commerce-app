@@ -21,7 +21,7 @@ export default function MenuComponent() {
       return category.map((item, index) => (
         <div key={index} className="basis-1/5 ">
           <a
-            href={"/#"}
+            href={`/home?category=${item.id}`}
             className="hover:text-orange-600 active:text-orange-500"
           >
             {item.title}
@@ -31,10 +31,7 @@ export default function MenuComponent() {
     }
     return (
       <div className="basis-1/5 ">
-        <a
-          href={puplatingCategory}
-          className="hover:text-orange-600 active:text-orange-500"
-        >
+        <a href="/#" className="hover:text-orange-600 active:text-orange-500">
           Tidak ada Category
         </a>
       </div>
