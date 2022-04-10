@@ -13,3 +13,11 @@ export function getProducts() {
 export function getProduct(id) {
   return api.get(`${API}/api/products/${id}`);
 }
+
+export function getProductByCategory(category) {
+  return api.get(`${API}/api/products`, {
+    limit: 20,
+    page: 0,
+    category_id: category,
+  });
+}

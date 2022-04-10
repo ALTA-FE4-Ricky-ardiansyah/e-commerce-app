@@ -8,13 +8,13 @@ export async function get(url, params, headers) {
       headers,
     })
     .then((response) => response.data)
-    .catch((error) => error.response.data);
+    .catch((error) => error);
   return axiosResponse;
 }
 
-export async function post(url, params, headers) {
+export async function post(url, params, headers, body) {
   const axiosResponse = await axios
-    .post(url, {
+    .post(url, body, {
       params,
       headers,
     })

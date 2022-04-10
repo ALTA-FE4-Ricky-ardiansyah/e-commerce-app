@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardOfCart from "../components/CardOfCart";
 import NavbarComponent from "../components/NavbarComponent";
+import { checkAuth } from "../service/Auth";
+import { useNavigate } from "react-router-dom";
 
 export default function ShopingCart() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Auth();
+  }, []);
+
+  const Auth = () => {
+    // ambil localstorage
+    const data = localStorage.getItem("user-info");
+    // cek apakah ada localStorage
+    if (data) {
+      // convert json yang awalnya bentuk string jadi objek
+      const json = JSON.parse(data);
+      // check token
+      checkAuthData(json.Token);
+      // ambil namanya
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const checkAuthData = async (token) => {
+    const Auth = await checkAuth(token);
+    if (Auth.code !== 200) {
+      localStorage.removeItem("user-info");
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="h-screen bg-slate-100">
       <NavbarComponent label={"Cart"} />
@@ -21,7 +52,7 @@ export default function ShopingCart() {
                 type="button"
                 className=" inline-block px-10 py-2.5  bg-orange-600 text-white font-semibold text-xs leading-tight  rounded-full shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
               >
-                Add to Cart
+                Check out
               </button>
             </div>
           </div>

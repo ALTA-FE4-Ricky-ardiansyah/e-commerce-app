@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Card2 from "../components/Card2";
 import MenuComponent from "../components/MenuComponent";
 import NavbarComponent from "../components/NavbarComponent";
 import banner from "../assets/banner.jpg";
+import { useNavigate } from "react-router-dom";
+import { checkAuth } from "../service/Auth";
 
 export default function SellProduct() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Auth();
+  }, []);
+
+  const Auth = () => {
+    // ambil localstorage
+    const data = localStorage.getItem("user-info");
+    // cek apakah ada localStorage
+    if (data) {
+      // convert json yang awalnya bentuk string jadi objek
+      const json = JSON.parse(data);
+      // check token
+      checkAuthData(json.Token);
+      // ambil namanya
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const checkAuthData = async (token) => {
+    const Auth = await checkAuth(token);
+    if (Auth.code !== 200) {
+      localStorage.removeItem("user-info");
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="bg-slate-100 h-screen">
       <NavbarComponent />
-      <div class="flex justify-center mt-10">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-9/12">
-          <div class="flex justify-center">
+      <div className="flex justify-center mt-10">
+        <div className="block p-6 rounded-lg shadow-lg bg-white w-9/12">
+          <div className="flex justify-center">
             <h5>Sell Product</h5>
           </div>
-          <form class="mt-6">
-            <div class="form-group mb-6">
+          <form className="mt-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -37,10 +68,10 @@ export default function SellProduct() {
                 placeholder="Product name"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -60,10 +91,10 @@ export default function SellProduct() {
                 placeholder="Price"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -83,10 +114,10 @@ export default function SellProduct() {
                 placeholder="link picture"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -107,10 +138,10 @@ export default function SellProduct() {
               ></input>
             </div>
           </form>
-          <div class="flex justify-end">
+          <div className="flex justify-end">
             <button
               type="submit"
-              class="
+              className="
             px-6
             py-2.5
             bg-orange-600
@@ -133,9 +164,9 @@ export default function SellProduct() {
           </div>
         </div>
       </div>
-      <div class="flex justify-center mt-10">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-9/12">
-          <div class="flex justify-center">
+      <div className="flex justify-center mt-10">
+        <div className="block p-6 rounded-lg shadow-lg bg-white w-9/12">
+          <div className="flex justify-center">
             <h5>Your Product</h5>
           </div>
           <div>{/* <Card2 /> */}</div>
