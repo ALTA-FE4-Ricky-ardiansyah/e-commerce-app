@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import * as api from "../";
 import swal from "sweetalert";
 import { register, loginService } from "../service/Auth";
+import qs from "qs";
 
 export default function Login() {
   const [name, setName] = useState({});
@@ -20,7 +21,8 @@ export default function Login() {
 
   async function signup() {
     let item = { name, password, email };
-    const result = await register(JSON.stringify(item));
+    const result = await register(qs.stringify(item));
+    console.log(result);
     if (result.code === 200) {
       localStorage.setItem("user-info", JSON.stringify(result.data));
       navigate("/home");
@@ -30,25 +32,21 @@ export default function Login() {
   }
 
   async function signIn() {
-    // let result = await fetch("http://34.238.121.143:8000/api/auth", {
-    //   method: "POST",
-    //   body: {
-    //     username: emailLogin,
-    //     password: passwordLogin,
-    //   },
-    //   headers: { "Content-Type": "text/plain", Accept: "*/*" },
-    // });
-    let Auth = await loginService({
-      username: emailLogin,
-      password: passwordLogin,
-    });
+    let Auth = await loginService(
+      qs.stringify({
+        username: emailLogin,
+        password: passwordLogin,
+      })
+    );
     if (Auth.code === 200) {
       localStorage.setItem("user-info", JSON.stringify(Auth.data));
       alert("login sukses");
-    } else {
-      alert("login gagal");
+      navigate("/home");
+    } else if (Auth.code === 401) {
+      alert("Username atau Password Salah");
+      setPasswordLogin(passwordLogin);
+      setEmailLogin(emailLogin);
     }
-    navigate("/home");
   }
 
   return (
@@ -63,7 +61,6 @@ export default function Login() {
             <div className="form-group mb-6">
               <input
                 type="text"
-                value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="form-control
                 block
@@ -88,7 +85,6 @@ export default function Login() {
             <div className="form-group mb-6">
               <input
                 type="password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control
                 block
@@ -106,13 +102,13 @@ export default function Login() {
                 m-0
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id=""
+                placeholder="Password"
                 aria-describedby=""
               ></input>
             </div>
             <div className="form-group mb-6">
               <input
                 type="email"
-                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-control
                 block

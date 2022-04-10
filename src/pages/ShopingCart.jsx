@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardOfCart from "../components/CardOfCart";
 import NavbarComponent from "../components/NavbarComponent";
+import { checkAuth } from "../service/Auth";
+import { useNavigate } from "react-router-dom";
 
 export default function ShopingCart() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    Auth();
+  }, []);
+
+  const Auth = () => {
+    // ambil localstorage
+    const data = localStorage.getItem("user-info");
+    // cek apakah ada localStorage
+    if (data) {
+      // convert json yang awalnya bentuk string jadi objek
+      const json = JSON.parse(data);
+      // check token
+      checkAuthData(json.Token);
+      // ambil namanya
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const checkAuthData = async (token) => {
+    const Auth = await checkAuth(token);
+    if (Auth.code !== 200) {
+      localStorage.removeItem("user-info");
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="h-screen bg-slate-100">
       <NavbarComponent label={"Cart"} />

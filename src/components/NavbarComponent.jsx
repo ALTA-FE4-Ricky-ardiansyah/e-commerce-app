@@ -1,8 +1,13 @@
 import React from "react";
 import cart from "../assets/shopping-cart(1).png";
 import userIcon from "../assets/user.png";
+import { checkAuth } from "../service/Auth";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarComponent(props) {
+  const navigate = useNavigate();
+
   const Auth = () => {
     // ambil localstorage
     const data = localStorage.getItem("user-info");
@@ -10,6 +15,9 @@ export default function NavbarComponent(props) {
     if (data) {
       // convert json yang awalnya bentuk string jadi objek
       const json = JSON.parse(data);
+      // check token
+      checkAuthData(json.Token);
+
       // ambil namanya
       return (
         <span>
@@ -18,6 +26,15 @@ export default function NavbarComponent(props) {
       );
     }
   };
+
+  const checkAuthData = async (token) => {
+    const Auth = await checkAuth(token);
+    if (Auth.code !== 200) {
+      localStorage.removeItem("user-info");
+      navigate("/login");
+    }
+  };
+
   return (
     <nav className=" block px-6 py-4 shadow-lg bg-slate-100 w-full">
       <div className="flex justify-between">

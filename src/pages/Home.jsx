@@ -29,7 +29,6 @@ export default function Home() {
     }
     if (response.code === 200) {
       setProduct(response.data);
-      console.log(product);
       setLinks(response.links);
     } else {
       alert("Something error, please reload");
@@ -62,19 +61,19 @@ export default function Home() {
       <div className="flex justify-center">
         <MenuComponent />
       </div>
-      <div className="flex justify-center mx-auto">
+      <div className="flex justify-center flex-wrap mx-auto x">
         {populatingItemProduct()}
       </div>
 
       {/* pagination */}
-      <div class="flex justify-center my-9">
+      <div className="flex justify-center my-9">
         <nav aria-label="Page navigation example">
-          <ul class="flex list-style-none">
+          <ul className="flex list-style-none">
             <li className="page-item disabled">
               <a
                 className="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-500 pointer-events-none focus:shadow-none"
                 href="#!"
-                tabindex="-1"
+                tabiIndex="-1"
                 aria-disabled="true"
               >
                 Previous

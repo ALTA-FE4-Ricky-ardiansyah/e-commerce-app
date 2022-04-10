@@ -8,16 +8,16 @@ export default function EditProduct() {
   return (
     <div className="bg-slate-100 h-screen">
       <NavbarComponent />
-      <div class="flex justify-center mt-10">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-9/12">
-          <div class="flex justify-center">
+      <div className="flex justify-center mt-10">
+        <div className="block p-6 rounded-lg shadow-lg bg-white w-9/12">
+          <div className="flex justify-center">
             <h5>Sell Product</h5>
           </div>
-          <form class="mt-6">
-            <div class="form-group mb-6">
+          <form className="mt-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -37,10 +37,10 @@ export default function EditProduct() {
                 placeholder="Product name"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -60,10 +60,10 @@ export default function EditProduct() {
                 placeholder="Price"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -83,10 +83,10 @@ export default function EditProduct() {
                 placeholder="link picture"
               ></input>
             </div>
-            <div class="form-group mb-6">
+            <div className="form-group mb-6">
               <input
                 type=""
-                class="form-control
+                className="form-control
                 block
                 w-full
                 px-3
@@ -107,10 +107,10 @@ export default function EditProduct() {
               ></input>
             </div>
           </form>
-          <div class="flex justify-end">
+          <div className="flex justify-end">
             <button
               type="submit"
-              class="
+              className="
             px-6
             py-2.5
             bg-orange-600
@@ -133,9 +133,9 @@ export default function EditProduct() {
           </div>
         </div>
       </div>
-      <div class="flex justify-center mt-10">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-9/12">
-          <div class="flex justify-center">
+      <div className="flex justify-center mt-10">
+        <div className="block p-6 rounded-lg shadow-lg bg-white w-9/12">
+          <div className="flex justify-center">
             <h5>Your Product</h5>
           </div>
           <div>{/* <Card2 /> */}</div>
