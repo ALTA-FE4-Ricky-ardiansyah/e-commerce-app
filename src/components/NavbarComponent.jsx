@@ -50,10 +50,11 @@ export default function NavbarComponent(props) {
           <a href="/cart">
             <img className="w-7" src={cart} alt="shopcart" />
           </a>
-          {Auth()}
+
           <a href="/sellProduct">
             <img className="w-7 h-7  mx-6" src={userIcon} alt="userIcon" />
           </a>
+          {Auth()}
         </div>
       </div>
     </nav>

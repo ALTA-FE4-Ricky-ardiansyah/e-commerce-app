@@ -22,16 +22,20 @@ export default function Card(props) {
     // <Link href={`/product/${props.id}`}>
     <div className="mt-9 mx-5 flex justify-center">
       <div className="w-60 rounded-lg shadow-lg bg-white max-w-sm ">
-        <a href="#!">
+        <a href={`/product/${props.id}`}>
           <img className="rounded-t-lg" src={props.image} alt="" />
         </a>
         <div className="p-6 text-center">
-          <h5 className="text-gray-900 text-xl font-bold  mb-2 ">
-            {props.namaProduct}
-          </h5>
-          <p className="text-orange-600 text-lg font-semibold mb-4">
-            RP. {props.harga}
-          </p>
+          <a href={`/product/${props.id}`}>
+            <h5 className="text-gray-900 text-xl font-bold  mb-2 ">
+              {props.namaProduct}
+            </h5>
+          </a>
+          <a href={`/product/${props.id}`}>
+            <p className="text-orange-600 text-lg font-semibold mb-4">
+              RP. {props.harga}
+            </p>
+          </a>
           <button
             onClick={() => addToCart()}
             type="button"

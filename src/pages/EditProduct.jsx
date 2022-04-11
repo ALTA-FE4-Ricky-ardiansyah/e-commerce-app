@@ -3,6 +3,7 @@ import React from "react";
 import MenuComponent from "../components/MenuComponent";
 import NavbarComponent from "../components/NavbarComponent";
 import banner from "../assets/banner.jpg";
+import Card from "../components/Card";
 
 export default function EditProduct() {
   return (
@@ -138,7 +139,9 @@ export default function EditProduct() {
           <div className="flex justify-center">
             <h5>Your Product</h5>
           </div>
-          <div>{/* <Card2 /> */}</div>
+          <div>
+            <Card />
+          </div>
         </div>
       </div>
     </div>
