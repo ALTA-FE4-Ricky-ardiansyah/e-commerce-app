@@ -1,22 +1,22 @@
 import React from "react";
 
-export default function CardOfCart() {
+export default function CardOfCart(props) {
   return (
     <div className="m-5 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl lg:max-w-4xl xl:max-w-6xl">
       <div className="md:flex">
         <div className="md:shrink-0">
           <img
             className="h-48 w-full object-cover md:h-full md:w-48"
-            src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
-            alt="Man looking at item at a store"
+            src={props.image}
+            alt="gambar"
           />
         </div>
         <div className="p-8">
           <p className=" block mt-1 text-2xl font-semibold leading-tight  text-black ">
-            Lorem ipsum dolor sit amet
+            {props.namaProduct}
           </p>
           <p className="my-5 block mt-3 text-2xl font-semibold leading-tight  text-orange-500 ">
-            Rp. Lorem ipsum,
+            {props.harga}
           </p>
           <div className="flex justify-center">
             <div className="mb-3 xl:w-96">
@@ -54,13 +54,13 @@ export default function CardOfCart() {
             <span className="text-sm text-slate-500 font-normal">
               sub total
             </span>{" "}
-            Rp. Lorem ipsum,
+            {props.subTotal}
           </p>
           <button
             type="button"
             className="my-5 mt-4 inline-block px-10 py-2.5  bg-orange-600 text-white font-semibold text-xs leading-tight  rounded-full shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
           >
-            Add to Cart
+            Remove
           </button>
         </div>
       </div>
